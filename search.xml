@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>OPPO手机解BL锁和Root</title>
+      <link href="/2023/09/03/Root/"/>
+      <url>/2023/09/03/Root/</url>
+      
+        <content type="html"><![CDATA[<h4 id="解BL锁">解BL锁</h4><p>OPPO解BL(Bootloader)锁，需要申请<code>深度测试</code>资格</p><p><a href="https://www.oppo.cn/thread-397164526-1">OPPO手机深度测试官方公告</a></p><p>机型版本在ColorOS11才能深度测试，否则需降级</p><p><a href="https://www.oppo.cn/thread-399822402-1">ColorOS13降级ColorOS12</a></p><p><a href="https://www.oppo.cn/thread-397798205-1">ColorOS12降级ColorOS11</a></p><p>申请需要1个月，之后在深度测试APP确认解锁进入Fastboot模式</p><p>手机需用数据线连接电脑进行解锁</p><p>使用<a href="https://pan.quark.cn/s/00878d8d7b0c">wzsx150的ADB工具</a>，输入解锁指令，并用音量键选择和电源键确定，注意解锁会格式化系统</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flashing unlock</span><br></pre></td></tr></table></figure><p>重启</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot reboot</span><br></pre></td></tr></table></figure><h4 id="修补内核">修补内核</h4><p>获取全量包下载链接并下载解压提取boot.img(系统的内核文件)</p><p>使用<code>MT管理器</code>打开<code>/data/data/com.oplus.ota/databases/ota.db</code></p><p>文本形式打开，其中https链接.zip文件为全量包下载链接</p><p>安装Magisk</p><p><a href="https://github.com/topjohnwu/Magisk">topjohnwu/Magisk: The Magic Mask for Android (github.com)</a></p><p>主界面选择第一个安装，再选择并修补一个文件，文件选择boot.img，将修补产生的magisk_patched-xxxxx_xxxxx.img复制到电脑</p><p>回到ADB工具箱，输入指令进入Fastboot模式</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb reboot bootloader</span><br></pre></td></tr></table></figure><p>输入指令刷入magisk_patched-xxxxx_xxxxx.img</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash boot 文件绝对路径</span><br></pre></td></tr></table></figure><p>重启结束</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot reboot</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>test</title>
       <link href="/2023/07/14/test/"/>
       <url>/2023/07/14/test/</url>
