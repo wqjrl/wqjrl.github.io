@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>斐讯K2P实现校园网锐捷账号多拨 | 晚起见日落的博客</title><meta name="author" content="晚起见日落"><meta name="copyright" content="晚起见日落"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="刷入Breed 使用斐讯K2P刷入Breed 辅助工具，刷入Breed 定制第三方固件 打开OpenWrt固件下载与在线定制编译网站   设备的名称选择Phicomm K2P   常用软件包选择luci-app-syncdial 多拨 luci-app-mwan3 负载均衡 luci-app-ttyd 网页版命令行 luci-app-turboacc 网络加速   定制软件包输入libpcap 网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斐讯K2P实现校园网锐捷账号多拨">
+<meta property="og:url" content="https://www.wqjrl.top/2023/10/03/K2P%E5%AE%9E%E7%8E%B0%E6%A0%A1%E5%9B%AD%E7%BD%91%E9%94%90%E6%8D%B7%E8%B4%A6%E5%8F%B7%E5%A4%9A%E6%8B%A8/index.html">
+<meta property="og:site_name" content="晚起见日落的博客">
+<meta property="og:description" content="刷入Breed 使用斐讯K2P刷入Breed 辅助工具，刷入Breed 定制第三方固件 打开OpenWrt固件下载与在线定制编译网站   设备的名称选择Phicomm K2P   常用软件包选择luci-app-syncdial 多拨 luci-app-mwan3 负载均衡 luci-app-ttyd 网页版命令行 luci-app-turboacc 网络加速   定制软件包输入libpcap 网">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2024/01/15/65a4cc0b80603.png">
+<meta property="article:published_time" content="2023-10-03T07:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-15T06:09:44.808Z">
+<meta property="article:author" content="晚起见日落">
+<meta property="article:tag" content="路由器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2024/01/15/65a4cc0b80603.png"><link rel="shortcut icon" href="https://bu.dusays.com/2024/01/17/65a75bfdde83a.png"><link rel="canonical" href="https://www.wqjrl.top/2023/10/03/K2P%E5%AE%9E%E7%8E%B0%E6%A0%A1%E5%9B%AD%E7%BD%91%E9%94%90%E6%8D%B7%E8%B4%A6%E5%8F%B7%E5%A4%9A%E6%8B%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 晚起见日落","link":"链接: ","source":"来源: 晚起见日落的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '斐讯K2P实现校园网锐捷账号多拨',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-15 14:09:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/demo.css"><link rel="stylesheet" href="/css/mycss.css"><meta name="generator" content="Hexo 6.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/xlenco/JS-X@main/pace.js/pace.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://bu.dusays.com/2023/10/04/651d5b6ff4168.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="晚起见日落的博客"><span class="site-name">晚起见日落的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">斐讯K2P实现校园网锐捷账号多拨</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-03T07:00:00.000Z" title="发表于 2023-10-03 15:00:00">2023-10-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-15T06:09:44.808Z" title="更新于 2024-01-15 14:09:44">2024-01-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span id="" data-flag-title="斐讯K2P实现校园网锐捷账号多拨"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h4 id="刷入Breed">刷入Breed</h4>
+<p>使用<a target="_blank" rel="noopener" href="https://tbvv.net/posts/0101-breed">斐讯K2P刷入Breed 辅助工具</a>，刷入Breed</p>
+<h4 id="定制第三方固件">定制第三方固件</h4>
+<p>打开<a target="_blank" rel="noopener" href="https://openwrt.ai/">OpenWrt固件下载与在线定制编译网站</a></p>
+<ul>
+<li>
+<p>设备的名称选择<code>Phicomm K2P</code></p>
+</li>
+<li>
+<p>常用软件包选择<code>luci-app-syncdial</code> 多拨 <code>luci-app-mwan3 </code>负载均衡 <code>luci-app-ttyd</code> 网页版命令行 <code>luci-app-turboacc</code> 网络加速</p>
+</li>
+<li>
+<p>定制软件包输入<code>libpcap</code> 网络数据包捕获函数库 <code>mentohust</code> 第三方锐捷认证工具 <code>luci-app-mentohust</code> 第三方锐捷认证工具界面</p>
+</li>
+<li>
+<p>默认主题选择 <code>Argon</code></p>
+</li>
+<li>
+<p>后台地址输入 <code>192.168.1.1</code></p>
+</li>
+<li>
+<p>子网掩码输入 <code>255.255.255.0</code></p>
+</li>
+<li>
+<p>后台密码输入<code>root</code></p>
+</li>
+<li>
+<p>打开<a target="_blank" rel="noopener" href="https://ipw.cn/">IPv6测试</a>，若网络未开启IPv6，则取消勾选IPv6</p>
+</li>
+</ul>
+<p>点击构建新固件，等待构建成功，下载第一个固件</p>
+<p>(<a target="_blank" rel="noopener" href="https://pan.quark.cn/s/ae39ee964c74">如想偷懒，可下载此固件</a>)</p>
+<h4 id="刷入第三方固件">刷入第三方固件</h4>
+<p>使用直通网线一端插入电脑RJ45口，一端插入路由LAN口</p>
+<p>路由器断电后，按住复位键(Reset标识按钮)不松手并插入电源，等待5秒后松开复位键，浏览器输入<code>192.168.1.1</code>进入Breed Web恢复控制台界面</p>
+<p><strong>固件备份</strong></p>
+<ul>
+<li>下载备份EEPROM</li>
+</ul>
+<p><strong>恢复出厂设置</strong></p>
+<ul>
+<li>固件类型选择 <code>Config区(公版)</code></li>
+<li>执行</li>
+</ul>
+<p><strong>固件更新</strong></p>
+<ul>
+<li>
+<p>勾选固件 浏览选择之前定制的第三方固件镜像文件</p>
+</li>
+<li>
+<p>闪存布局选择 <code>斐讯布局</code></p>
+</li>
+<li>
+<p>上传</p>
+</li>
+<li>
+<p>等待更新完毕</p>
+</li>
+</ul>
+<h4 id="配置路由插件">配置路由插件</h4>
+<p>使用直通网线一端插入路由WAN口，一端插入提供网络的设备(光猫，交换机，AP)的RJ45口</p>
+<p>浏览器输入<code>192.168.1.1</code>进入路由管理后台</p>
+<p>用户名为<code>root</code> 输入密码<code>root</code></p>
+<p>按照设置向导设置路由基本配置(路由无线名字和密码)，然后配置插件</p>
+<p><strong>网络/多线多拨</strong></p>
+<ul>
+<li>
+<p>勾选启用</p>
+</li>
+<li>
+<p>勾选启用并发多拨</p>
+</li>
+<li>
+<p>多拨类型选择 单线多拨</p>
+</li>
+<li>
+<p>选择外网接口 wan</p>
+</li>
+<li>
+<p>输入虚拟WAN接口数量 4</p>
+<p>(取决于你具有的校园网账号数以及一个账号限制的在线设备数，如我有2个账号且每个账号限制2个设备，则输入 4)</p>
+</li>
+<li>
+<p>不勾选绑定物理接口</p>
+</li>
+<li>
+<p>输入最低在线接口数量 4</p>
+</li>
+<li>
+<p>输入重拨等待时间 25</p>
+</li>
+<li>
+<p>不勾选 不自动配置MWAN3负载均衡</p>
+</li>
+<li>
+<p>不点击 重新并发拨号</p>
+</li>
+<li>
+<p>点击 保存并应用</p>
+</li>
+</ul>
+<p><strong>网络/接口</strong></p>
+<ul>
+<li>
+<p>点击 编辑</p>
+</li>
+<li>
+<p>常规设置/协议选择 DHCP客户端</p>
+</li>
+<li>
+<p>点击保存</p>
+<p>所有VWAN口和WAN口重复以上操作</p>
+</li>
+<li>
+<p>点击 保存并应用</p>
+</li>
+</ul>
+<p><strong>网络/防火墙</strong></p>
+<ul>
+<li>
+<p>取消勾选 启用SYN-flood防御</p>
+</li>
+<li>
+<p>转发 选择接受</p>
+</li>
+<li>
+<p>取消勾选 全锥型NAT</p>
+</li>
+<li>
+<p>区域 lan→wan, wan→ACCEPT 入站数据，出站数据，转发皆选择 接受</p>
+</li>
+<li>
+<p>点击 保存并应用</p>
+</li>
+</ul>
+<p><strong>网络/负载均衡</strong></p>
+<ul>
+<li>
+<p>点击接口 删除 wan 保留所有vwan</p>
+</li>
+<li>
+<p>点击策略 编辑 删除wan</p>
+</li>
+<li>
+<p>点击 保存并应用</p>
+</li>
+</ul>
+<p><strong>状态/负载均衡</strong></p>
+<p>观察vwan所处状态，此时为离线状态</p>
+<h4 id="多拨">多拨</h4>
+<p>保留负载均衡页面，另外打开一个路由后台页面</p>
+<p><strong>服务/终端</strong></p>
+<ul>
+<li>
+<p>输入用户名 <code>root</code>，再输入密码 <code>root</code></p>
+</li>
+<li>
+<p>输入mentohust指令</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mentohust -u20231003 -p123456 -a1 -d1 -nmacvlan1 -b1</span><br></pre></td></tr></table></figure>
+<p>其中u后为校园网账号名，p后为账号密码，n后为虚拟网卡号</p>
+<p>等待拨号成功，负载均衡界面 指定vwan处于在线状态</p>
+<ul>
+<li>输入指令 删除pid文件结束进程</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /tmp/mentohust.pid -f</span><br></pre></td></tr></table></figure>
+<p>重复以上指令(其中mentohust指令需修改校园网账号名，密码，虚拟网卡号)，使所有vwan处于在线状态</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://www.wqjrl.top">晚起见日落</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.wqjrl.top/2023/10/03/K2P%E5%AE%9E%E7%8E%B0%E6%A0%A1%E5%9B%AD%E7%BD%91%E9%94%90%E6%8D%B7%E8%B4%A6%E5%8F%B7%E5%A4%9A%E6%8B%A8/">https://www.wqjrl.top/2023/10/03/K2P%E5%AE%9E%E7%8E%B0%E6%A0%A1%E5%9B%AD%E7%BD%91%E9%94%90%E6%8D%B7%E8%B4%A6%E5%8F%B7%E5%A4%9A%E6%8B%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.wqjrl.top" target="_blank">晚起见日落的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/">路由器</a></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2024/01/15/65a4cc0b80603.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2023/09/03/OPPO%E6%89%8B%E6%9C%BA%E8%A7%A3BL%E9%94%81%E5%92%8CRoot/" title="OPPO手机解BL锁和Root"><img class="cover" src="https://bu.dusays.com/2024/01/17/65a76007c6421.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">OPPO手机解BL锁和Root</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://bu.dusays.com/2023/10/04/651d5b6ff4168.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">晚起见日落</div><div class="author-info__description">态度决定一切</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wqjrl"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:3046532301@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #ffffff;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">态度决定一切</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%B7%E5%85%A5Breed"><span class="toc-number">1.</span> <span class="toc-text">刷入Breed</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E7%AC%AC%E4%B8%89%E6%96%B9%E5%9B%BA%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">定制第三方固件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%B7%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%9B%BA%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">刷入第三方固件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E6%8F%92%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">配置路由插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E6%8B%A8"><span class="toc-number">5.</span> <span class="toc-text">多拨</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/03/K2P%E5%AE%9E%E7%8E%B0%E6%A0%A1%E5%9B%AD%E7%BD%91%E9%94%90%E6%8D%B7%E8%B4%A6%E5%8F%B7%E5%A4%9A%E6%8B%A8/" title="斐讯K2P实现校园网锐捷账号多拨"><img src="https://bu.dusays.com/2024/01/15/65a4cc0b80603.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="斐讯K2P实现校园网锐捷账号多拨"/></a><div class="content"><a class="title" href="/2023/10/03/K2P%E5%AE%9E%E7%8E%B0%E6%A0%A1%E5%9B%AD%E7%BD%91%E9%94%90%E6%8D%B7%E8%B4%A6%E5%8F%B7%E5%A4%9A%E6%8B%A8/" title="斐讯K2P实现校园网锐捷账号多拨">斐讯K2P实现校园网锐捷账号多拨</a><time datetime="2023-10-03T07:00:00.000Z" title="发表于 2023-10-03 15:00:00">2023-10-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/03/OPPO%E6%89%8B%E6%9C%BA%E8%A7%A3BL%E9%94%81%E5%92%8CRoot/" title="OPPO手机解BL锁和Root"><img src="https://bu.dusays.com/2024/01/17/65a76007c6421.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OPPO手机解BL锁和Root"/></a><div class="content"><a class="title" href="/2023/09/03/OPPO%E6%89%8B%E6%9C%BA%E8%A7%A3BL%E9%94%81%E5%92%8CRoot/" title="OPPO手机解BL锁和Root">OPPO手机解BL锁和Root</a><time datetime="2023-09-03T09:30:00.000Z" title="发表于 2023-09-03 17:30:00">2023-09-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By 晚起见日落</div><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank" href="https://hexo.io/"> <img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"></a><a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"></a><a style="margin-inline:5px"target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"> </a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-api-1r66.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-api-1r66.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
