@@ -159,7 +159,7 @@ utils.addGlobalFn('pjaxSend', () => {
         const ele = document.querySelectorAll('.twikoo-count')
         if (!ele) return
         twikoo.getCommentsCount({
-            envId: 'https://twikoo-comment-system.netlify.app',
+            envId: 'https://twikoo-comment-system.netlify.app/.netlify/functions/twikoo',
             region: '',
             urls: [window.location.pathname],
             includeReply: false
@@ -172,7 +172,7 @@ utils.addGlobalFn('pjaxSend', () => {
     const init = () => {
         twikoo.init(Object.assign({
             el: '#twikoo-wrap',
-            envId: 'https://twikoo-comment-system.netlify.app',
+            envId: 'https://twikoo-comment-system.netlify.app/.netlify/functions/twikoo',
             region: '',
             path: window.location.pathname,
             onCommentLoaded: () => {
@@ -191,7 +191,7 @@ utils.addGlobalFn('pjaxSend', () => {
 
     const loadTwikoo = () => {
         if (typeof twikoo === 'object') setTimeout(init,0)
-        else utils.getScript('https://fastly.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js').then(init)
+        else utils.getScript('https://registry.npmmirror.com/twikoo/1.6.44/files/dist/twikoo.min.js').then(init)
     }
 
     if ('Twikoo' === 'Twikoo' || false) {
