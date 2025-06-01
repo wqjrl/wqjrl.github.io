@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>斐讯K2P实现校园网锐捷账号多拨</title>
+    <url>/posts/23a4.html</url>
+    <content><![CDATA[<h4 id="刷入Breed"><a href="#刷入Breed" class="headerlink" title="刷入Breed"></a>刷入Breed</h4><p>使用<a href="https://tbvv.net/posts/0101-breed">斐讯K2P刷入Breed 辅助工具</a>，刷入Breed。</p>
+<h4 id="定制第三方固件"><a href="#定制第三方固件" class="headerlink" title="定制第三方固件"></a>定制第三方固件</h4><p>打开<a href="https://openwrt.ai/">OpenWrt固件下载与在线定制编译网站</a>，执行以下操作：</p>
+<ul>
+<li><p>设备的名称选择<code>Phicomm K2P</code></p>
+</li>
+<li><p>常用软件包选择<code>luci-app-syncdial</code> 多拨、 <code>luci-app-mwan3 </code>负载均衡、 <code>luci-app-ttyd</code> 网页版命令行、 <code>luci-app-turboacc</code> 网络加速</p>
+</li>
+<li><p>定制软件包输入<code>libpcap</code> 网络数据包捕获函数库、 <code>mentohust</code> 第三方锐捷认证工具、 <code>luci-app-mentohust</code> 第三方锐捷认证工具界面</p>
+</li>
+<li><p>默认主题选择 <code>Argon</code></p>
+</li>
+<li><p>后台地址输入 <code>192.168.1.1</code></p>
+</li>
+<li><p>子网掩码输入 <code>255.255.255.0</code></p>
+</li>
+<li><p>后台密码输入<code>root</code></p>
+</li>
+<li><p>打开<a href="https://ipw.cn/">IPv6测试</a>，若网络未开启IPv6，则取消勾选IPv6</p>
+</li>
+</ul>
+<p>点击构建新固件，等待构建成功，下载第一个固件。</p>
+<p>(<a href="https://pan.quark.cn/s/ae39ee964c74">偷懒可下载此固件</a>)</p>
+<h4 id="刷入第三方固件"><a href="#刷入第三方固件" class="headerlink" title="刷入第三方固件"></a>刷入第三方固件</h4><p>使用直通网线一端插入电脑RJ45口，一端插入路由LAN口。</p>
+<p>路由器断电后，按住复位键(Reset标识按钮)不松手并插入电源，等待5秒后松开复位键，浏览器输入<code>192.168.1.1</code>进入Breed Web恢复控制台界面。</p>
+<p><strong>固件备份</strong></p>
+<ul>
+<li>下载备份EEPROM</li>
+</ul>
+<p><strong>恢复出厂设置</strong> </p>
+<ul>
+<li>固件类型选择 <code>Config区(公版)</code> </li>
+<li>执行</li>
+</ul>
+<p><strong>固件更新</strong> </p>
+<ul>
+<li><p>勾选固件 浏览选择之前定制的第三方固件镜像文件</p>
+</li>
+<li><p>闪存布局选择 <code>斐讯布局</code></p>
+</li>
+<li><p>上传</p>
+</li>
+<li><p>等待更新完毕</p>
+</li>
+</ul>
+<h4 id="配置路由插件"><a href="#配置路由插件" class="headerlink" title="配置路由插件"></a>配置路由插件</h4><p>使用直通网线一端插入路由WAN口，一端插入提供网络的设备(光猫，交换机，AP)的RJ45口。</p>
+<p>浏览器输入<code>192.168.1.1</code>进入路由管理后台，用户名为<code>root</code>， 密码为<code>root</code>。</p>
+<p>按照设置向导设置路由基本配置(路由无线名字和密码)，然后配置以下插件：</p>
+<p><strong>网络&#x2F;多线多拨</strong></p>
+<ul>
+<li><p>勾选启用</p>
+</li>
+<li><p>勾选启用并发多拨</p>
+</li>
+<li><p>多拨类型选择 单线多拨</p>
+</li>
+<li><p>选择外网接口 wan</p>
+</li>
+<li><p>输入虚拟WAN接口数量 4</p>
+<p>(取决于你具有的校园网账号数以及一个账号限制的在线设备数，如我有2个账号且每个账号限制2个设备，则输入 4)</p>
+</li>
+<li><p>不勾选绑定物理接口</p>
+</li>
+<li><p>输入最低在线接口数量 4</p>
+</li>
+<li><p>输入重拨等待时间 25</p>
+</li>
+<li><p>不勾选 不自动配置MWAN3负载均衡</p>
+</li>
+<li><p>不点击 重新并发拨号</p>
+</li>
+<li><p>点击 保存并应用</p>
+</li>
+</ul>
+<p><strong>网络&#x2F;接口</strong></p>
+<ul>
+<li><p>点击 编辑</p>
+</li>
+<li><p>常规设置&#x2F;协议选择 DHCP客户端</p>
+</li>
+<li><p>点击保存</p>
+<p>所有VWAN口和WAN口重复以上操作</p>
+</li>
+<li><p>点击 保存并应用</p>
+</li>
+</ul>
+<p><strong>网络&#x2F;防火墙</strong></p>
+<ul>
+<li><p>取消勾选 启用SYN-flood防御</p>
+</li>
+<li><p>转发 选择接受</p>
+</li>
+<li><p>取消勾选 全锥型NAT</p>
+</li>
+<li><p>区域 lan→wan, wan→ACCEPT 入站数据，出站数据，转发皆选择 接受</p>
+</li>
+<li><p>点击 保存并应用</p>
+</li>
+</ul>
+<p><strong>网络&#x2F;负载均衡</strong></p>
+<ul>
+<li><p>点击接口 删除 wan 保留所有vwan</p>
+</li>
+<li><p>点击策略 编辑 删除wan</p>
+</li>
+<li><p>点击 保存并应用</p>
+</li>
+</ul>
+<p><strong>状态&#x2F;负载均衡</strong></p>
+<p>观察vwan所处状态，此时为离线状态</p>
+<h4 id="多拨"><a href="#多拨" class="headerlink" title="多拨"></a>多拨</h4><p>保留负载均衡页面，另外打开一个路由后台页面</p>
+<p><strong>服务&#x2F;终端</strong></p>
+<ul>
+<li><p>输入用户名 <code>root</code>，再输入密码 <code>root</code></p>
+</li>
+<li><p>输入mentohust指令</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mentohust -u20231003 -p123456 -a1 -d1 -nmacvlan1 -b1</span><br></pre></td></tr></table></figure>
+
+<p>其中u后为校园网账号名，p后为账号密码，n后为虚拟网卡号</p>
+<p>等待拨号成功，负载均衡界面 指定vwan处于在线状态</p>
+<ul>
+<li>输入指令 删除pid文件结束进程</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm /tmp/mentohust.pid -f</span><br></pre></td></tr></table></figure>
+
+<p>重复以上指令(其中mentohust指令需修改校园网账号名，密码，虚拟网卡号)，使所有vwan处于在线状态</p>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>路由器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/3eeb.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
